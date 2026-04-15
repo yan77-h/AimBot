@@ -47,17 +47,20 @@
 
 ### 环境要求
 - Windows 10 / 11
-- 支持 CUDA 的 NVIDIA 显卡 (可选，用于加速推理)
+- 支持 CUDA 的 NVIDIA 显卡（项目使用的显卡 NVIDIA GeForce RTX 4060 Laptop GPU, 8188MiB）
 - Anaconda 或 Miniconda 已安装
 
 ### 安装步骤
 
+**注意！以下环境对应于开发者设备的硬件环境，不一定适用！若不适用，请自行配置适合于本地硬件的环境，一般注意 cuda 和 pytorch 的版本即可**
+
 1. **克隆仓库**
+   
    ```bash
    git clone https://github.com/yan77-h/AimBot.git
    cd AimBot
    ```
-
+   
 2. **使用 Conda 创建并激活环境**
 
    项目根目录已提供 `environment.yml` 文件，可直接复现完全相同的开发环境：
