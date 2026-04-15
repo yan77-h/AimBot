@@ -10,23 +10,23 @@ def main():
     # 判断是否按下退出键，按下即退出程序
     is_paused = False
     # 捕获区域范围size*size
-    size = 800
+    size = 1440
     # 屏幕捕获帧率
     fps = 60
     # 响应范围
-    fov = 400
+    fov = 300
     # 获得屏幕大小
     screen_width, screen_height = pyautogui.size()
     # 截图区域内中心坐标
     center_x, center_y = size//2, size//2
     # 指定模型路径
-    model_path = r"models/best_7.pt"
+    model_path = r"models/best_7.engine"
     # 识别类别
     _class = 0
     # 最低满足置信度
-    min_conf = 0
+    min_conf = 0.7
     # 平滑系数
-    smooth_factor = 1
+    smooth_factor = 0.8
 
     # 初始化相机实例
     camera = capture.init_camera(size,fps,screen_width,screen_height)
