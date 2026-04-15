@@ -54,8 +54,8 @@
 
 1. **克隆仓库**
    ```bash
-   git clone https://github.com/yourusername/your-aimbot-project.git
-   cd your-aimbot-project
+   git clone https://github.com/yan77-h/AimBot.git
+   cd AimBot
    ```
 
 2. **使用 Conda 创建并激活环境**
@@ -68,7 +68,7 @@
    ```
 
 3. **放置模型权重(可选)**
-   将你训练好的 YOLOv11 模型文件 (`best.pt`) 放入 `models/` 文件夹。
+   将你训练好的 YOLO 模型文件 (`best.pt`) 放入 `models/` 文件夹。
 
 ### 运行程序
 
@@ -78,6 +78,7 @@
    python main.py
    ```
 3. **默认操作**：
+   
    - 程序自动对屏幕中央 `800x800` 区域进行推理。
    - 当检测到 `类别 0` 且距离准星最近的敌人时，鼠标会自动向其移动。
    - **按下 `F12` 键**即可安全退出程序。
@@ -100,6 +101,8 @@
 欢迎对代码逻辑提出优化建议！目前待办事项包括：
 - [ ] 增加图形化设置界面 (GUI) 方便调整参数
 - [ ] 优化 CPU 占用与推理延迟
+- [ ] 改用训练数据更好的模型
+- [ ] 改用 TensorRT 格式模型减少延迟
 
 ## 📄 许可证
 
@@ -110,6 +113,3 @@
 如有问题或建议，欢迎提 Issue 或通过以下方式联系：
 - GitHub: [@yan77-h](https://github.com/yan77-h)
 - Email: yan_@tju.edu.cn
-=======
-# AimBot
->>>>>>> origin/main
