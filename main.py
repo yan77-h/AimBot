@@ -20,7 +20,7 @@ def main():
     # 截图区域内中心坐标
     center_x, center_y = size//2, size//2
     # 指定模型路径
-    model_path = r"models/best.pt"
+    model_path = r"models/best_7.pt"
     # 识别类别
     _class = 0
     # 最低满足置信度
