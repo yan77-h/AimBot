@@ -6,6 +6,7 @@ from core import mouse_driver
 import pyautogui
 import keyboard
 import time
+import cv2
 
 def main():
     # 判断是否按下退出键，按下即退出程序
@@ -68,6 +69,34 @@ def main():
         if target_x is not None:
             move_x, move_y = trajectory.calculate_movement(target_x, target_y, center_x, center_y, smooth_factor)
             mouse_driver.move_mouse(move_x, move_y)
+            # ================== 演示视频渲染模块 ==================
+            # 1. 绘制准星（屏幕中心点）
+            # cv2.circle(frame, (center_x, center_y), 4, (255, 0, 0), -1)  # 蓝色实心圆作为准星
+            # cv2.circle(frame, (center_x, center_y), fov, (255, 255, 255), 1)  # 绘制FOV范围白圈
+
+            # 2. 遍历并绘制所有检测到的目标框
+            if boxes is not None and len(boxes) > 0:
+                # 将 GPU 上的坐标数据转到 CPU 并提取
+                xyxy_array = boxes.xyxy.cpu().numpy()
+                for box in xyxy_array:
+                    x1, y1, x2, y2 = map(int, box[:4])
+                    # 画出所有敌人的绿色边框
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+
+            # 3. 强调当前锁定的最佳目标
+                # 用一根红线将准星和锁定的目标连接起来（类似自瞄射线，演示效果极佳）
+                cv2.line(frame, (center_x, center_y), (int(target_x), int(target_y)), (0, 0, 255), 2)
+                # 在锁定目标身上画一个醒目的红色准心
+                cv2.circle(frame, (int(target_x), int(target_y)), 5, (0, 0, 255), -1)
+
+        # 4. 显示无闪烁的实时窗口
+        # 调整窗口大小，如果你截图是 1440，显示器可能放不下，可以按比例缩小显示
+        show_frame = cv2.resize(frame, (600, 450)) if size > 800 else frame
+        cv2.imshow("Aimbot Demo", show_frame)
+
+        # 这里的 waitKey(1) 是防止窗口卡死或闪烁的灵魂核心，必须有！
+        cv2.pollKey()
+            # ======================================================
         t4 = time.perf_counter()
 
         # 累加各部分耗时 (乘以 1000 将秒转换为毫秒)

@@ -18,7 +18,7 @@ def my_load_model(model_path):
 返回boxes
 """
 def predict_target(model, frame, img_size=1440):
-    results = model.predict(frame, imgsz=img_size, rect=True)
+    results = model.predict(frame, imgsz=img_size, rect=True, verbose=False)
     boxes = results[0].boxes
 
     return boxes
